@@ -1,0 +1,13 @@
+.profile {
+
+}
+
+.profileButton {
+  height: auto !important;
+
+  & > div {
+    width: 180px !important;
+    height: 70px;
+    line-height: 70px;
+  }
+}
