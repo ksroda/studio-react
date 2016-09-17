@@ -13,22 +13,24 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import Home from './views/Home/Home'
 import About from './views/About/About'
+import Form from './views/Form/Form'
 
-import { app } from './reducers'
+import { reducer } from './reducers'
 
 injectTapEventPlugin()
 const logger = createLogger({
   collapsed: true,
   duration: true
 })
-const store = createStore(app, applyMiddleware(logger, thunk))
+const store = createStore(reducer, applyMiddleware(logger, thunk))
 
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <Router history={browserHistory}>
         <Route path="/" component={Home}>
-          <IndexRoute component={About}/>
+          <IndexRoute component={About} />
+          <Route path="/form" component={Form} />
         </Route>
       </Router>
     </MuiThemeProvider>

@@ -16,7 +16,7 @@ class About extends Component {
 
 function select (state, props) {
   return {
-    counter: state.counter
+    counter: state.app.counter
   }
 }
 

@@ -4,6 +4,9 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/build/'
   },
+  devServer: {
+            historyApiFallback: true
+        },
   module: {
     loaders: [
       {
