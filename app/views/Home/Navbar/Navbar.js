@@ -7,7 +7,9 @@ import style from './Navbar.scss'
 function Navbar () {
   return (
     <nav className={style.navbar}>
-      <div style={{ flex: 1 }}>tu będzie logo</div>
+      <div style={{ flex: 1 }}>
+        <img className={style.logo} src="../../../shared/images/logo.png" width="100" />
+      </div>
       <div>tu będzie język</div>
       <Profile />
     </nav>

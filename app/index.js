@@ -22,7 +22,7 @@ const logger = createLogger({
   collapsed: true,
   duration: true
 })
-const store = createStore(reducer, applyMiddleware(logger, thunk))
+const store = createStore(reducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
   <Provider store={store}>
