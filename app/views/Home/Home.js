@@ -1,30 +1,43 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import FlatButton from 'material-ui/FlatButton'
+import Paper from 'material-ui/Paper'
+import CircularProgress from 'material-ui/CircularProgress'
+import { browserHistory } from 'react-router'
 
 import Navbar from './Navbar/Navbar'
 import Menu from './Menu/Menu'
 
-import { increaseCounter, decreaseCounter, asyncDoubleIncrease } from '../../actions'
+import style from './Home.scss'
 
-function Home ({ children, dispatch }) {
-  return (
-    <div>
-      <Navbar />
-      <Menu />
-      <h1>Home</h1>
-      <FlatButton label="INC" onClick={() => dispatch(increaseCounter())} />
-      <FlatButton label="DEC" onClick={() => dispatch(decreaseCounter())} />
-      <FlatButton label="ASYNC INC" onClick={() => dispatch(asyncDoubleIncrease())} />
-      {children}
-    </div>
-  )
+class Home extends Component {
+  render () {
+    const { children, isFetching } = this.props
+    return (
+      <div>
+        <Navbar />
+        <Menu />
+        <Paper className={style.appBody} zDepth={1}>
+          {
+            isFetching
+              ? <CircularProgress className={style.loading} />
+              : children
+          }
+        </Paper>
+      </div>
+    )
+  }
 }
 
 Home.propTypes = {
   children: PropTypes.node,
-  dispatch: PropTypes.func
+  isFetching: PropTypes.bool
 }
 
-export default connect()(Home)
+function select (state) {
+  return {
+    isFetching: state.app.isFetching
+  }
+}
+
+export default connect(select)(Home)

@@ -1,0 +1,15 @@
+.appBody {
+  position: absolute;
+  top: 80px;
+  left: 260px !important;
+  padding: 30px;
+  width: calc(100vw - (260px + 10px));
+  min-height: calc(100vh - (80px + 10px));
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  transform: translate(-50%, -50%);
+}

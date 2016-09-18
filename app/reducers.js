@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import { INC_COUNTER, DEC_COUNTER } from './actions'
+import { INC_COUNTER, DEC_COUNTER, IS_FETCHING, SET_ALL_QUESTIONS } from './actions'
 
 const initialState = {
   counter: 0
@@ -18,6 +18,16 @@ function app (state = initialState, action) {
       return {
         ...state,
         counter: state.counter - 1
+      }
+    case IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.payload.isFetching
+      }
+    case SET_ALL_QUESTIONS:
+      return {
+        ...state,
+        allQuestions: action.payload.allQuestions
       }
     default:
       return state

@@ -1,11 +1,12 @@
+const path = require('path')
+var webpack = require('webpack')
+
 module.exports = {
-  entry: './app/index.js',
+  entry: ['webpack-hot-middleware', path.resolve(__dirname, 'app', 'index.js')],
   output: {
+    path: path.resolve(__dirname, '/build/'),
     filename: 'bundle.js',
-    publicPath: '/build/'
-  },
-  devServer: {
-    historyApiFallback: true
+    publicPath: path.resolve(__dirname, '/'),
   },
   module: {
     loaders: [
@@ -24,5 +25,8 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+import { IndexRoute, Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
@@ -11,9 +11,13 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
+import Auth from './views/Auth/Auth'
 import Home from './views/Home/Home'
+import Login from './views/Login/Login'
 import About from './views/About/About'
 import Form from './views/Form/Form'
+import Questions from './views/Questions/Questions'
+import QuestionsAll from './views/Questions/QuestionsAll/QuestionsAll'
 
 import reducer from './reducers'
 
@@ -28,9 +32,15 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <Router history={browserHistory}>
-        <Route path="/" component={Home}>
-          <IndexRoute component={About} />
-          <Route path="/form" component={Form} />
+        <Route path="/" component={Auth}>
+          <Route path="/login" component={Login} />
+          <Route path="/home" component={Home}>
+            <IndexRoute component={About} />
+            <Route path="/form" component={Form} />
+            <Route path="/questions" component={Questions}>
+              <Route path="all" component={QuestionsAll} />
+            </Route>
+          </Route>
         </Route>
       </Router>
     </MuiThemeProvider>
