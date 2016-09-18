@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import Paper from 'material-ui/Paper'
 
@@ -71,18 +71,16 @@ export const menuTree = [
   }
 ]
 
-class Menu extends Component {
-  render () {
-    return (
-      <Paper className={style.menuContainer} zDepth={2}>
-        {
-          menuTree.map((menuItem, index) => (
-            <MenuItem key={index} menuItem={menuItem} />
-          ))
-        }
-      </Paper>
-    )
-  }
+function Menu () {
+  return (
+    <Paper className={style.menuContainer} zDepth={2}>
+      {
+        menuTree.map((menuItem, index) => (
+          <MenuItem key={index} menuItem={menuItem} />
+        ))
+      }
+    </Paper>
+  )
 }
 
 export default Menu

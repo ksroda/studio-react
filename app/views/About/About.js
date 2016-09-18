@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import style from './About.scss'
@@ -14,7 +14,11 @@ class About extends Component {
   }
 }
 
-function select (state, props) {
+About.propTypes = {
+  counter: PropTypes.number
+}
+
+function select (state) {
   return {
     counter: state.app.counter
   }

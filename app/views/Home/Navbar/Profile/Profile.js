@@ -11,8 +11,8 @@ function Profile () {
     <div className={style.profile}>
       <IconMenu
         iconButtonElement={<FlatButton className={style.profileButton} label="Profil" />}
-        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+        targetOrigin={{ horizontal: 'left', vertical: 'top' }}
       >
         <MenuItem value="1" primaryText="Zmień hasło" />
         <MenuItem value="4" primaryText="Wyloguj" />
