@@ -15,7 +15,7 @@ import Home from './views/Home/Home'
 import About from './views/About/About'
 import Form from './views/Form/Form'
 
-import { reducer } from './reducers'
+import reducer from './reducers'
 
 injectTapEventPlugin()
 const logger = createLogger({

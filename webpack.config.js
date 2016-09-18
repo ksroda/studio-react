@@ -5,8 +5,8 @@ module.exports = {
     publicPath: '/build/'
   },
   devServer: {
-            historyApiFallback: true
-        },
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {

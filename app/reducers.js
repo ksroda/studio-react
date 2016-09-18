@@ -1,6 +1,7 @@
-import { INC_COUNTER, DEC_COUNTER } from './actions'
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
+
+import { INC_COUNTER, DEC_COUNTER } from './actions'
 
 const initialState = {
   counter: 0
@@ -28,4 +29,4 @@ const reducers = {
   form: formReducer
 }
 
-export const reducer = combineReducers(reducers)
+export default combineReducers(reducers)

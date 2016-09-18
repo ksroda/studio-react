@@ -16,9 +16,9 @@ export function decreaseCounter () {
 }
 
 export function asyncDoubleIncrease () {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(increaseCounter())
     Promise.delay(2000)
-      .then(() => dispatch(increaseCounter ()))
+      .then(() => dispatch(increaseCounter()))
   }
 }
