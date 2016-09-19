@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { IndexRoute, Router, Route, IndexRedirect, browserHistory } from 'react-router'
+import { IndexRoute, Router, Route, Redirect, browserHistory } from 'react-router'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
@@ -11,15 +11,16 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
-import Auth from './views/Auth/Auth'
-import Home from './views/Home/Home'
-import Login from './views/Login/Login'
-import About from './views/About/About'
-import Form from './views/Form/Form'
-import Questions from './views/Questions/Questions'
-import QuestionsAll from './views/Questions/QuestionsAll/QuestionsAll'
+import Auth from '~/Auth'
+import Home from '~/views/Home/Home'
+import Login from '~/views/Login/Login'
+import About from '~/views/About/About'
+import Form from '~/views/Form/Form'
+import QuestionsList from '~/views/QuestionsList/QuestionsList'
+import QuestionsAll from '~/views/QuestionsList/QuestionsAll/QuestionsAll'
+import QuestionsCreate from '~/views/QuestionCreate/QuestionCreate'
 
-import reducer from './reducers'
+import reducer from '~/reducers'
 
 injectTapEventPlugin()
 const logger = createLogger({
@@ -33,13 +34,19 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <Router history={browserHistory}>
         <Route path="/" component={Auth}>
-          <Route path="/login" component={Login} />
-          <Route path="/home" component={Home}>
+          <Route path="login" component={Login} />
+          <Route path="home" component={Home}>
             <IndexRoute component={About} />
-            <Route path="/form" component={Form} />
-            <Route path="/questions" component={Questions}>
+
+            <Route path="form" component={Form} />
+
+            <Redirect from="questions" to="questions/all" />
+            <Route path="questions" component={QuestionsList}>
               <Route path="all" component={QuestionsAll} />
             </Route>
+            <Route path="questions/create" component={QuestionsCreate} />
+            <Route path="questions/edit/:id" component={QuestionsCreate} />
+
           </Route>
         </Route>
       </Router>

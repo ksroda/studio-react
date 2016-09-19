@@ -1,19 +1,42 @@
 const path = require('path')
-var webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
-  entry: ['webpack-hot-middleware', path.resolve(__dirname, 'app', 'index.js')],
+  devtool: 'cheap-module-eval-source-map',
+
+  entry: [
+    'webpack-hot-middleware/client',
+    './app/index'
+  ],
+
   output: {
-    path: path.resolve(__dirname, '/build/'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: path.resolve(__dirname, '/'),
+    publicPath: '/build/',
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      '__DEV__': true
+    })
+  ],
+
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'app')
+    }
+  },
+
   module: {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
+        loaders: ['babel'],
+        include: [
+          path.join(__dirname, 'app')
+        ]
       },
       {
         test: /\.scss$/,
@@ -25,8 +48,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
+
 }

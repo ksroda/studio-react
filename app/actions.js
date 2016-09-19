@@ -46,21 +46,17 @@ export function setAllQuestions (allQuestions) {
   }
 }
 
-export function login () {
-  return dispatch => {
-    API.login.post({ username: 'admin', password: 'Admin123!@#', 'grant_type': 'password' })
-      .then(response => {
-        localStorage.setItem('token', response.data.access_token)
-        browserHistory.push('/home')
-      })
-  }
-}
-
 export function getAllQuestions () {
-  return dispatch => {
+  return (dispatch) => {
+    dispatch(setFetching(true))
     API.questions.getAllQuestions()
-      .then(response => {
+      .then((response) => {
         dispatch(setAllQuestions(response.data))
+        dispatch(setFetching(false))
+      })
+      .catch(() => {
+        dispatch(setAllQuestions([]))
+        dispatch(setFetching(false))
       })
   }
 }

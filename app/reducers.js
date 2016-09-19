@@ -3,11 +3,12 @@ import { reducer as formReducer } from 'redux-form'
 
 import { INC_COUNTER, DEC_COUNTER, IS_FETCHING, SET_ALL_QUESTIONS } from './actions'
 
-const initialState = {
-  counter: 0
+const appInitialState = {
+  counter: 0,
+  isFetching: false
 }
 
-function app (state = initialState, action) {
+function app (state = appInitialState, action) {
   switch (action.type) {
     case INC_COUNTER:
       return {
@@ -24,10 +25,20 @@ function app (state = initialState, action) {
         ...state,
         isFetching: action.payload.isFetching
       }
+    default:
+      return state
+  }
+}
+
+const questionsInitialState = {
+}
+
+function questions (state = questionsInitialState, action) {
+  switch (action.type) {
     case SET_ALL_QUESTIONS:
       return {
         ...state,
-        allQuestions: action.payload.allQuestions
+        all: action.payload.allQuestions
       }
     default:
       return state
@@ -36,6 +47,7 @@ function app (state = initialState, action) {
 
 const reducers = {
   app,
+  questions,
   form: formReducer
 }
 

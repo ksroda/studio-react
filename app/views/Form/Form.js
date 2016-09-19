@@ -11,16 +11,21 @@ function validate (values) {
   return errors
 }
 
-function handleSubmit (a, b, c) {
-  c.preventDefault()
-  console.log(a, b, c)
-}
-
 class Form extends Component {
+  constructor () {
+    super()
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit (values) {
+    console.log(values)
+  }
+
   render () {
-    // const { handleSubmit } = this.props
+    const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(this.handleSubmit)}>
         <Field name="name" component={Input} type="text" floatingLabelText="Name" />
         <button type="submit">Submit</button>
       </form>

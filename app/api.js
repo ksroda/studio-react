@@ -12,11 +12,11 @@ const getPromise = (url, data, method) => axios({
   url,
   [method === 'post' ? 'data' : 'params']: qs.stringify(data),
   ...(
-    sessionStorage.getItem('token') || localStorage.getItem('token')
+    sessionStorage.getItem('token')
       ?
         {
           headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('token') || localStorage.getItem('token')}`
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`
           }
         }
       : {}
@@ -57,7 +57,8 @@ const api = {
     get: data => getPromise(data.url),
     delete: data => getPromise(data.url, null, 'delete'),
     post: data => getPromise(`${baseURL}/api/accounts/create`, data, 'post'),
-    put: (id, data) => getPromise(`${baseURL}/api/accounts/user/${id}`, data, 'put')
+    put: (id, data) => getPromise(`${baseURL}/api/accounts/user/${id}`, data, 'put'),
+    me: () => getPromise(`${baseURL}/api/accounts/me`)
   },
   users: {
     get: () => getPromise(`${baseURL}/api/accounts/users`)

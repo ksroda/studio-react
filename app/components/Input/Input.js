@@ -1,28 +1,40 @@
-import React, { Component } from 'react'
-import { Field } from 'redux-form'
+import React, { PropTypes, Component } from 'react'
 
 import TextField from 'material-ui/TextField'
 
-function InputByType ({ type, ...rest }) {
-  switch (type) {
+export const inputTypes = {
+  TextField: 'TextField'
+}
+
+function InputByType ({ inputType, ...rest }) {
+  switch (inputType) {
     default:
-    case 'text':
+    case inputTypes.TextField:
       return <TextField {...rest} />
   }
 }
 
+InputByType.propTypes = {
+  inputType: PropTypes.string
+}
+
 class Input extends Component {
   render () {
-    console.log(this.props)
-    const { input, meta: { error, touched }, type, ...rest } = this.props
+    const { input, meta: { error, touched }, inputType, ...rest } = this.props
     const errorText = touched ? error : ''
-    return React.cloneElement(<TextField />, {
+    return React.cloneElement(<InputByType inputType={inputType} />, {
       ...input,
       errorText,
       ...rest,
-      type
+      inputType
     })
   }
+}
+
+Input.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  inputType: PropTypes.string
 }
 
 export default Input

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Paper from 'material-ui/Paper'
 import CircularProgress from 'material-ui/CircularProgress'
-import { browserHistory } from 'react-router'
 
 import Navbar from './Navbar/Navbar'
 import Menu from './Menu/Menu'

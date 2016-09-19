@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import RaisedButton from 'material-ui/RaisedButton'
+import Paper from 'material-ui/Paper'
 
-import { login } from '../../actions'
+import LoginForm from './LoginForm/LoginForm'
+
+import style from './Login.scss'
 
 class Login extends Component {
   render () {
-    const { dispatch } = this.props
     return (
-      <div>
-        <RaisedButton label="Zaloguj" onClick={() => dispatch(login())} primary />
-      </div>
+      <Paper className={style.login}>
+        <LoginForm />
+      </Paper>
     )
   }
 }
