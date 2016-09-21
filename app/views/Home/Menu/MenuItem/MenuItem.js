@@ -38,13 +38,18 @@ class MenuItem extends Component {
           primaryText={name}
           onTouchTap={() => this.handleTouchTap(path)}
           style={{
-            backgroundColor: expanded ? '#D2D2D2' : 'white',
-            borderLeft: expanded ? '3px solid cyan' : '3px white solid'
+            backgroundColor: expanded ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0)',
+            color: 'white'
           }}
           {
             ...(
               submenu
-                ? { rightIcon: expanded ? <ExpandLessIcon /> : <ExpandMoreIcon /> }
+                ?
+                  {
+                    rightIcon: expanded
+                      ? <ExpandLessIcon color="white" />
+                      : <ExpandMoreIcon color="white" />
+                  }
                 : null
             )
           }
@@ -60,9 +65,13 @@ class MenuItem extends Component {
                   submenu.map((submenuItem, index) => (
                     <MenuItemMUI
                       key={index}
-                      innerDivStyle={{ paddingLeft: 30, backgroundColor: '#ebebeb' }}
+                      innerDivStyle={{
+                        paddingLeft: 30,
+                        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                        color: 'white'
+                      }}
                       primaryText={submenuItem.name}
-                      onTouchTap={() => console.log('sdfds')}
+                      onTouchTap={() => this.handleTouchTap(submenuItem.path)}
                     />
                   ))
                 }

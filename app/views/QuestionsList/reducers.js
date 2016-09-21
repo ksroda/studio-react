@@ -1,0 +1,23 @@
+import { SET_ALL_QUESTIONS, SET_FETCHING_ALL } from './actions'
+
+const allInitialState = {
+  isFetching: false,
+  data: []
+}
+
+export function all (state = allInitialState, action) {
+  switch (action.type) {
+    case SET_ALL_QUESTIONS:
+      return {
+        ...state,
+        data: action.payload.allQuestions
+      }
+    case SET_FETCHING_ALL:
+      return {
+        ...state,
+        isFetching: action.payload.isFetching
+      }
+    default:
+      return state
+  }
+}

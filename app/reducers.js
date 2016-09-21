@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import { INC_COUNTER, DEC_COUNTER, IS_FETCHING, SET_ALL_QUESTIONS } from './actions'
+import { all } from './views/QuestionsList/reducers'
+import { INC_COUNTER, DEC_COUNTER } from './actions'
 
 const appInitialState = {
-  counter: 0,
-  isFetching: false
+  counter: 0
 }
 
 function app (state = appInitialState, action) {
@@ -20,26 +20,6 @@ function app (state = appInitialState, action) {
         ...state,
         counter: state.counter - 1
       }
-    case IS_FETCHING:
-      return {
-        ...state,
-        isFetching: action.payload.isFetching
-      }
-    default:
-      return state
-  }
-}
-
-const questionsInitialState = {
-}
-
-function questions (state = questionsInitialState, action) {
-  switch (action.type) {
-    case SET_ALL_QUESTIONS:
-      return {
-        ...state,
-        all: action.payload.allQuestions
-      }
     default:
       return state
   }
@@ -47,7 +27,9 @@ function questions (state = questionsInitialState, action) {
 
 const reducers = {
   app,
-  questions,
+  questions: combineReducers({
+    all
+  }),
   form: formReducer
 }
 

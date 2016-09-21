@@ -17,6 +17,4 @@ QuestionsList.propTypes = {
   children: PropTypes.node
 }
 
-
-
 export default connect()(QuestionsList)

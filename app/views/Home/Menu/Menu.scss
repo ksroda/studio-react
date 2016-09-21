@@ -1,8 +1,18 @@
+@import '../../../../shared/colors';
+
 .menuContainer {
   position: fixed;
-  top: 80px;
-  left: 10px;
-  height: calc(100vh - (70px + 20px));
+  top: 72px;
+  //left: 10px;
+  height: calc(100vh - 70px);
   width: 230px;
   padding-top: 5px;
+  background-color: $pomadka;
+
+  -webkit-box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
+  box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
+
+
+  color: white;
 }

@@ -1,23 +1,35 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 
-import IconButton from 'material-ui/IconButton'
-import EditIcon from 'material-ui/svg-icons/content/create'
+import CircularProgress from 'material-ui/CircularProgress'
 
-import { getAllQuestions } from '../../../actions'
+import QuestionsTable from '../../../components/QuestionsTable/QuestionsTable'
+import { getAllQuestions } from '../actions'
 
 import style from '../QuestionsList.scss'
 
 class QuestionsAll extends Component {
+  constructor () {
+    super()
+
+    this.handleEdit = this.handleEdit.bind(this)
+  }
+
   componentDidMount () {
-    const { dispatch, allQuestions } = this.props
-    if (allQuestions === undefined) {
+    const { dispatch, questions } = this.props
+
+    if (questions.length === 0) {
       dispatch(getAllQuestions())
     }
   }
 
+  handleEdit (id) {
+    const { router } = this.context
+    router.push(`/home/questions/edit/${id}`)
+  }
+
   render () {
-    const { allQuestions } = this.props
+    const { questions, isFetching } = this.props
     const labels = [
       { text: 'Treść pytania', prop: 'content' },
       { text: 'Przedmiot', prop: 'subject' },
@@ -27,54 +39,36 @@ class QuestionsAll extends Component {
     return (
       <div>
         <h3>Wszystkie pytania</h3>
-        <table className={style.table}>
-          <thead>
-            <tr>
-              {
-                labels.map((label, i) => (
-                  <th key={`th-${i}`}>
-                    {label.text}
-                  </th>
-                ))
-              }
-              <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              (allQuestions || []).map((question, q) => (
-                <tr key={`question-${q}`}>
-                  {
-                    labels.map((label, l) => (
-                      <td key={`label-${l}`}>
-                        {
-                          label.prop.split(',').map(item => question[item]).join(' ')
-                        }
-                      </td>
-                    ))
-                  }
-                  <td>
-                    <IconButton><EditIcon /></IconButton>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+        {
+          isFetching
+            ? <CircularProgress className={style.loading} />
+            :
+              <QuestionsTable
+                tableClassname={style.table}
+                questions={questions}
+                labels={labels}
+                handleEdit={this.handleEdit}
+              />
+        }
       </div>
     )
   }
 }
 
-
 QuestionsAll.propTypes = {
   dispatch: PropTypes.func,
-  allQuestions: PropTypes.array
+  questions: PropTypes.array,
+  isFetching: PropTypes.isFetching
+}
+
+QuestionsAll.contextTypes = {
+  router: PropTypes.object
 }
 
 function select (state) {
   return {
-    allQuestions: state.questions.all
+    questions: state.questions.all.data,
+    isFetching: state.questions.all.isFetching
   }
 }
 

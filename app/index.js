@@ -15,30 +15,42 @@ import Auth from '~/Auth'
 import Home from '~/views/Home/Home'
 import Login from '~/views/Login/Login'
 import About from '~/views/About/About'
-import Form from '~/views/Form/Form'
 import QuestionsList from '~/views/QuestionsList/QuestionsList'
 import QuestionsAll from '~/views/QuestionsList/QuestionsAll/QuestionsAll'
 import QuestionsCreate from '~/views/QuestionCreate/QuestionCreate'
 
 import reducer from '~/reducers'
 
+// import { wrzosowy } from '../shared/colors'
+
+import { deepPurple400 } from 'material-ui/styles/colors'
+
 injectTapEventPlugin()
 const logger = createLogger({
   collapsed: true,
   duration: true
 })
+
 const store = createStore(reducer, applyMiddleware(thunk, logger))
+
+const theme = getMuiTheme({
+  ...lightBaseTheme,
+  palette: {
+    ...lightBaseTheme.palette,
+    primary1Color: deepPurple400
+  }
+})
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+    <MuiThemeProvider muiTheme={theme}>
       <Router history={browserHistory}>
         <Route path="/" component={Auth}>
           <Route path="login" component={Login} />
+
+          <Redirect from="home" to="home/questions/all" />
           <Route path="home" component={Home}>
             <IndexRoute component={About} />
-
-            <Route path="form" component={Form} />
 
             <Redirect from="questions" to="questions/all" />
             <Route path="questions" component={QuestionsList}>
@@ -48,6 +60,8 @@ ReactDOM.render(
             <Route path="questions/edit/:id" component={QuestionsCreate} />
 
           </Route>
+
+          <Redirect from="*" to="home/questions/all" />
         </Route>
       </Router>
     </MuiThemeProvider>

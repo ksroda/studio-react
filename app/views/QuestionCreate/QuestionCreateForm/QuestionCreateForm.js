@@ -10,6 +10,18 @@ function validate (values) {
   if (!values.content) {
     errors.content = 'This field is required'
   }
+  if (!values.answer0) {
+    errors.answer0 = 'This field is required'
+  }
+  if (!values.answer1) {
+    errors.answer1 = 'This field is required'
+  }
+  if (!values.answer2) {
+    errors.answer2 = 'This field is required'
+  }
+  if (!values.answer3) {
+    errors.answer3 = 'This field is required'
+  }
   return errors
 }
 
@@ -25,16 +37,16 @@ class QuestionCreateForm extends Component {
   }
 
   render () {
-    const { handleSubmit } = this.props
+    const { handleSubmit, editMode } = this.props
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <Field name="content" component={Input} floatingLabelText="Treść pytania" fullWidth />
-          <Field name="answers[0].content" component={Input} floatingLabelText="Odpowiedź A" fullWidth />
-          <Field name="answerB" component={Input} floatingLabelText="Odpowiedź B" fullWidth />
-          <Field name="answerC" component={Input} floatingLabelText="Odpowiedź C" fullWidth />
-          <Field name="answerD" component={Input} floatingLabelText="Odpowiedź D" fullWidth />
-          <RaisedButton type="submit" label="Dodaj" primary />
+          <Field name="content" component={Input} floatingLabelText="Treść pytania" style={{ marginBottom: 20 }} fullWidth />
+          <Field name="answer0" component={Input} floatingLabelText="Odpowiedź A" fullWidth />
+          <Field name="answer1" component={Input} floatingLabelText="Odpowiedź B" fullWidth />
+          <Field name="answer2" component={Input} floatingLabelText="Odpowiedź C" fullWidth />
+          <Field name="answer3" component={Input} floatingLabelText="Odpowiedź D" fullWidth />
+          <RaisedButton type="submit" label={editMode ? 'Zapisz' : 'Dodaj'} style={{ marginTop: 30 }} primary />
         </div>
       </form>
     )
@@ -42,7 +54,8 @@ class QuestionCreateForm extends Component {
 }
 
 QuestionCreateForm.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  editMode: PropTypes.bool
 }
 
 export default reduxForm({

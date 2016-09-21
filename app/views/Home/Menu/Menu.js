@@ -9,7 +9,7 @@ import style from './Menu.scss'
 export const menuTree = [
   {
     name: 'Strona główna',
-    path: '/',
+    path: '/home',
     icon: 'fa-home',
     active: true,
     access: ['admin', 'teacher', 'student']
@@ -20,11 +20,11 @@ export const menuTree = [
     submenu: [
       {
         name: 'Użytkownicy',
-        path: '#/panel'
+        path: '/home/panel'
       },
       {
         name: 'Przedmioty',
-        path: '#/przedmioty'
+        path: '/home/subjects'
       }
     ]
   },
@@ -34,12 +34,12 @@ export const menuTree = [
     submenu: [
       {
         name: 'Przeglądaj',
-        path: '#/moje_pytania',
+        path: '/home/questions/all',
         access: ['admin', 'teacher']
       },
       {
         name: 'Dodaj pytanie',
-        path: '#/dodaj_pytanie',
+        path: '/home/questions/create',
         access: ['admin', 'teacher']
       }
     ]
@@ -51,15 +51,15 @@ export const menuTree = [
     submenu: [
       {
         name: 'Aktualny egzamin',
-        path: '#/aktualne_pytania'
+        path: '/aktualne_pytania'
       },
       {
         name: 'Generuj nowy egzamin',
-        path: '#/generuj_egzamin'
+        path: '/generuj_egzamin'
       },
       {
         name: 'Generuj raporty',
-        path: '#/generuj_raporty'
+        path: '/generuj_raporty'
       }
     ]
   },
@@ -73,13 +73,13 @@ export const menuTree = [
 
 function Menu () {
   return (
-    <Paper className={style.menuContainer} zDepth={2}>
+    <div className={style.menuContainer} zDepth={2}>
       {
         menuTree.map((menuItem, index) => (
           <MenuItem key={index} menuItem={menuItem} />
         ))
       }
-    </Paper>
+    </div>
   )
 }
 

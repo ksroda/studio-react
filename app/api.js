@@ -31,7 +31,7 @@ const api = {
     post: data => getPromise(`${baseURL}/oauth/token`, data, 'post')
   },
   questions: {
-    getQuestion: data => getPromise(data.url),
+    getQuestion: data => getPromise(`${baseURL}/api/questions/${data.id}`),
     getAllQuestions: data => getPromise(`${baseURL}/api/questions`, data), // mock
     getMyQuestions: data => getPromise(`${baseURL}/myquestions`, data),
     post: data => getPromise('./test.json', data, 'post'),

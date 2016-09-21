@@ -1,3 +1,5 @@
+@import '../../../../shared/colors';
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -7,7 +9,12 @@
   align-items: stretch;
   justify-content: flex-end;
 
-  background-color: cyan;
+  background-color: white;
+  border-bottom: 2px solid $pomadka;
+
+  -webkit-box-shadow: 0px 11px 25px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 11px 25px -12px rgba(0,0,0,0.75);
+  box-shadow: 0px 11px 25px -12px rgba(0,0,0,0.75);
 }
 
 .logo {

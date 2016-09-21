@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
 
 import Paper from 'material-ui/Paper'
-import CircularProgress from 'material-ui/CircularProgress'
 
 import Navbar from './Navbar/Navbar'
 import Menu from './Menu/Menu'
@@ -11,17 +9,13 @@ import style from './Home.scss'
 
 class Home extends Component {
   render () {
-    const { children, isFetching } = this.props
+    const { children } = this.props
     return (
       <div>
         <Navbar />
         <Menu />
         <Paper className={style.appBody} zDepth={1}>
-          {
-            isFetching
-              ? <CircularProgress className={style.loading} />
-              : children
-          }
+          {children}
         </Paper>
       </div>
     )
@@ -29,14 +23,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  children: PropTypes.node,
-  isFetching: PropTypes.bool
+  children: PropTypes.node
 }
 
-function select (state) {
-  return {
-    isFetching: state.app.isFetching
-  }
-}
-
-export default connect(select)(Home)
+export default Home
