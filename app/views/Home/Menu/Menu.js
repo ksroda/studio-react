@@ -8,19 +8,19 @@ import style from './Menu.scss'
 
 export const menuTree = [
   {
-    name: 'Strona główna',
+    name: 'O nas',
     path: '/home',
     icon: 'fa-home',
     active: true,
     access: ['admin', 'teacher', 'student']
   },
   {
-    name: 'Panel',
+    name: 'Administracja',
     access: ['admin'],
     submenu: [
       {
         name: 'Użytkownicy',
-        path: '/home/panel'
+        path: '/home/administration/users'
       },
       {
         name: 'Przedmioty',
@@ -29,11 +29,11 @@ export const menuTree = [
     ]
   },
   {
-    name: 'Baza pytań',
+    name: 'Pytania',
     target: 'baza',
     submenu: [
       {
-        name: 'Przeglądaj',
+        name: 'Wszystkie',
         path: '/home/questions/all',
         access: ['admin', 'teacher']
       },

@@ -1,8 +1,8 @@
-@import '../../../../shared/colors';
+@import '../../../shared/colors';
 
 .menuContainer {
   position: fixed;
-  top: 72px;
+  top: 70px;
   //left: 10px;
   height: calc(100vh - 70px);
   width: 230px;
@@ -12,7 +12,6 @@
   -webkit-box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
   -moz-box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
   box-shadow: 11px 0px 25px -12px rgba(0,0,0,0.75);
-
 
   color: white;
 }

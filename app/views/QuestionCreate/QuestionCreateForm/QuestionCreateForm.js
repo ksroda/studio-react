@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import RaisedButton from 'material-ui/RaisedButton'
-
+import HeaderButtons from '../../../components/HeaderButtons/HeaderButtons'
 import Input from '../../../components/Input/Input'
 
 function validate (values) {
@@ -40,13 +39,22 @@ class QuestionCreateForm extends Component {
     const { handleSubmit, editMode } = this.props
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
+        <HeaderButtons
+          title="Dodaj pytanie"
+          buttons={[
+            {
+              type: 'submit',
+              label: editMode ? 'Zapisz' : 'Dodaj',
+              primary: true
+            }
+          ]}
+        />
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Field name="content" component={Input} floatingLabelText="Treść pytania" style={{ marginBottom: 20 }} fullWidth />
           <Field name="answer0" component={Input} floatingLabelText="Odpowiedź A" fullWidth />
           <Field name="answer1" component={Input} floatingLabelText="Odpowiedź B" fullWidth />
           <Field name="answer2" component={Input} floatingLabelText="Odpowiedź C" fullWidth />
           <Field name="answer3" component={Input} floatingLabelText="Odpowiedź D" fullWidth />
-          <RaisedButton type="submit" label={editMode ? 'Zapisz' : 'Dodaj'} style={{ marginTop: 30 }} primary />
         </div>
       </form>
     )

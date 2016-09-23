@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { browserHistory } from 'react-router'
 
 import MenuItemMUI from 'material-ui/MenuItem'
@@ -81,6 +81,10 @@ class MenuItem extends Component {
       </div>
     )
   }
+}
+
+MenuItem.propTypes = {
+  menuItem: PropTypes.object
 }
 
 export default MenuItem

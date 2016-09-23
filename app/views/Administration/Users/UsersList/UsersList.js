@@ -3,40 +3,45 @@ import { connect } from 'react-redux'
 
 import CircularProgress from 'material-ui/CircularProgress'
 
-import HeaderButtons from '../../../components/HeaderButtons/HeaderButtons'
-import Table from '../../../components/Table/Table'
-import { getAllQuestions } from '../actions'
+import HeaderButtons from '../../../../components/HeaderButtons/HeaderButtons'
+import Table from '../../../../components/Table/Table'
+// import { getAllQuestions } from '../actions'
 
-import style from '../QuestionsList.scss'
+import style from './UsersList.scss'
 
 class QuestionsAll extends Component {
   constructor () {
     super()
 
     this.handleEdit = this.handleEdit.bind(this)
-    this.handleNewQuestion = this.handleNewQuestion.bind(this)
+    this.handleNewUser = this.handleNewUser.bind(this)
   }
 
   componentDidMount () {
     const { dispatch, questions } = this.props
 
     if (questions.length === 0) {
-      dispatch(getAllQuestions())
+      // dispatch(getAllQuestions())
     }
   }
 
-  handleNewQuestion () {
+  handleNewUser () {
     const { router } = this.context
-    router.push('/home/questions/create')
+    router.push('/home/administration/users/create')
   }
 
   handleEdit (id) {
     const { router } = this.context
-    router.push(`/home/questions/edit/${id}`)
+    router.push(`/home/administration/users/edit/${id}`)
   }
 
   render () {
-    const { questions, isFetching } = this.props
+    // const { users, isFetching } = this.props
+    const users = [
+      {
+
+      }
+    ]
     const labels = [
       { text: 'Treść pytania', prop: 'content' },
       { text: 'Przedmiot', prop: 'subject' },
@@ -46,25 +51,25 @@ class QuestionsAll extends Component {
     return (
       <div>
         <HeaderButtons
-          title="Wszystkie pytania"
+          title="Użytkownicy"
           buttons={[
             {
-              label: 'Dodaj pytanie',
+              label: 'Dodaj użytkownika',
               primary: true,
-              onClick: this.handleNewQuestion
+              onClick: this.handleNewUser
             }
           ]}
         />
         {
-          isFetching
+          true // isFetching
             ? <CircularProgress className={style.loading} />
             :
-              <Table
-                tableClassname={style.table}
-                items={questions}
-                labels={labels}
-                handleEdit={this.handleEdit}
-              />
+            <Table
+              tableClassname={style.table}
+              items={users}
+              labels={labels}
+              handleEdit={this.handleEdit}
+            />
         }
       </div>
     )
@@ -73,7 +78,7 @@ class QuestionsAll extends Component {
 
 QuestionsAll.propTypes = {
   dispatch: PropTypes.func,
-  questions: PropTypes.array,
+  users: PropTypes.array,
   isFetching: PropTypes.isFetching
 }
 
@@ -83,8 +88,8 @@ QuestionsAll.contextTypes = {
 
 function select (state) {
   return {
-    questions: state.questions.all.data,
-    isFetching: state.questions.all.isFetching
+    // users: state.administration.users.all.data,
+    // isFetching: state.administration.users.all.data,
   }
 }
 

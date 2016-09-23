@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import IconButton from 'material-ui/IconButton'
 import EditIcon from 'material-ui/svg-icons/content/create'
 
-function QuestionsTable ({ tableClassname, labels, questions, handleEdit }) {
+function Table ({ tableClassname, labels, items, handleEdit }) {
   return (
     <table className={tableClassname}>
       <thead>
@@ -20,19 +20,19 @@ function QuestionsTable ({ tableClassname, labels, questions, handleEdit }) {
       </thead>
       <tbody>
         {
-          (questions || []).map((question, q) => (
-            <tr key={`question-${q}`}>
+          (items || []).map((item, q) => (
+            <tr key={`item-${q}`}>
               {
                 labels.map((label, l) => (
                   <td key={`label-${l}`}>
                     {
-                      label.prop.split(',').map(item => question[item]).join(' ')
+                      label.prop.split(',').map(item => item[item]).join(' ')
                     }
                   </td>
                 ))
               }
               <td>
-                <IconButton onClick={() => handleEdit(question.id)}>
+                <IconButton onClick={() => handleEdit(item.id)}>
                   <EditIcon />
                 </IconButton>
               </td>
@@ -44,11 +44,11 @@ function QuestionsTable ({ tableClassname, labels, questions, handleEdit }) {
   )
 }
 
-QuestionsTable.propTypes = {
+Table.propTypes = {
   tableClassname: PropTypes.string,
   labels: PropTypes.array,
-  questions: PropTypes.array,
+  items: PropTypes.array,
   handleEdit: PropTypes.func
 }
 
-export default QuestionsTable
+export default Table

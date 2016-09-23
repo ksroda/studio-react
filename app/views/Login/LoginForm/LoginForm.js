@@ -2,26 +2,12 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { browserHistory } from 'react-router'
 
+import { Checkbox, TextField } from 'redux-form-material-ui'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import Input from '../../../components/Input/Input'
 import API from '../../../api'
 
 import style from './LoginForm.scss'
-
-function validate (values) {
-  const errors = {}
-
-  if (!values.username) {
-    errors.username = 'Pole wymagane'
-  }
-
-  if (!values.password) {
-    errors.password = 'Pole wymagane'
-  }
-
-  return errors
-}
 
 class LoginForm extends Component {
   constructor () {
@@ -31,11 +17,13 @@ class LoginForm extends Component {
   }
 
   handleSubmit (values) {
+    const { setAllowedToSeeContent } = this.props
     const { username, password } = values
-    console.log(values)
-    API.login.post({ username, password, grant_type: 'password' })
+    // API.login.post({ username, password, grant_type: 'password' })
+    Promise.resolve()
       .then((response) => {
-        sessionStorage.setItem('token', response.data.access_token)
+        setAllowedToSeeContent(true)
+        // sessionStorage.setItem('token', response.data.access_token)
         browserHistory.push('/home')
       })
       .catch((error) => {
@@ -49,8 +37,25 @@ class LoginForm extends Component {
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <div className={style.form}>
           <img alt="" src="/images/logo.png" width="100" />
-          <Field name="username" component={Input} floatingLabelText="Nazwa użytkownika" />
-          <Field name="password" component={Input} floatingLabelText="Hasło" type="password" />
+          <Field
+            name="username"
+            component={TextField}
+            floatingLabelText="Nazwa użytkownika"
+            className={style.input}
+          />
+          <Field
+            name="password"
+            component={TextField}
+            floatingLabelText="Hasło"
+            type="password"
+            className={style.input}
+          />
+          <Field
+            name="rememberMe"
+            component={Checkbox}
+            label="Zapamiętaj mnie"
+            className={style.checkbox}
+          />
           <RaisedButton type="submit" label="Zaloguj" primary />
         </div>
       </form>
@@ -59,11 +64,11 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  setAllowedToSeeContent: PropTypes.func
 }
 
 export default reduxForm({
-  form: 'login',
-  validate
+  form: 'login'
 })(LoginForm)
 

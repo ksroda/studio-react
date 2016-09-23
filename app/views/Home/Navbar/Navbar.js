@@ -8,9 +8,8 @@ function Navbar () {
   return (
     <nav className={style.navbar}>
       <div style={{ flex: 1 }}>
-        <img className={style.logo} alt="" src="/images/logo.png" width="100" />
+        <img className={style.logo} alt="" src="/images/logo.png" width="90" />
       </div>
-      <div>tu będzie język</div>
       <Profile />
     </nav>
   )

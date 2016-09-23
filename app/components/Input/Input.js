@@ -1,9 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 
 import TextField from 'material-ui/TextField'
+import Checkbox from 'material-ui/Checkbox'
 
 export const inputTypes = {
-  TextField: 'TextField'
+  TextField: 'TextField',
+  Checkbox: 'Checkbox'
 }
 
 function InputByType ({ inputType, ...rest }) {
@@ -11,6 +13,8 @@ function InputByType ({ inputType, ...rest }) {
     default:
     case inputTypes.TextField:
       return <TextField {...rest} />
+    case inputTypes.Checkbox:
+      return <Checkbox {...rest} />
   }
 }
 

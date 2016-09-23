@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import RaisedButton from 'material-ui/RaisedButton'
@@ -6,7 +6,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 function QuestionsList ({ children }) {
   return (
     <div>
-      <RaisedButton style={{ float: 'right' }} label="Dodaj pytanie" primary />
       {children}
     </div>
   )
