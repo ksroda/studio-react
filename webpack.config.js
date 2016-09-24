@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  devtool: 'cheap-module-eval-source-map',
 
   entry: [
     'webpack-hot-middleware/client',
@@ -16,6 +17,7 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       '__DEV__': true
     })
@@ -40,7 +42,7 @@ module.exports = {
         test: /\.scss$/,
         loaders: [
           'style',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
           'resolve-url',
           'sass'
         ]

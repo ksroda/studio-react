@@ -8,15 +8,14 @@ const app = express()
 const compiler = webpack(config)
 
 app.use(history({
-  index: '/index.html'
+  index: '/index-dev.html'
 }))
 
 app.use(express.static('static'))
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath,
-  hot: true
+  publicPath: config.output.publicPath
 }))
 
 app.use(require('webpack-hot-middleware')(compiler))

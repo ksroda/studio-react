@@ -20,7 +20,8 @@ function About ({ counter, dispatch }) {
 }
 
 About.propTypes = {
-  counter: PropTypes.number
+  counter: PropTypes.number,
+  dispatch: PropTypes.func
 }
 
 function select (state) {

@@ -10,17 +10,17 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
-import Auth from './Auth'
-import Home from './views/Home/Home'
-import Login from './views/Login/Login'
-import About from './views/About/About'
-import QuestionsList from './views/QuestionsList/QuestionsList'
-import QuestionsAll from './views/QuestionsList/QuestionsAll/QuestionsAll'
-import QuestionsCreate from './views/QuestionCreate/QuestionCreate'
-import UsersList from './views/Administration/Users/UsersList/UsersList'
+import Auth from '~/Auth'
+import Home from '~/views/Home/Home'
+import Login from '~/views/Login/Login'
+import About from '~/views/About/About'
+import QuestionsList from '~/views/QuestionsList/QuestionsList'
+import QuestionsAll from '~/views/QuestionsList/QuestionsAll/QuestionsAll'
+import QuestionsCreate from '~/views/QuestionCreate/QuestionCreate'
+import UsersList from '~/views/Administration/Users/UsersList/UsersList'
 
-import { granacik } from './shared/colors'
-import reducer from './reducers'
+import { granacik } from '~/shared/colors'
+import reducer from '~/reducers'
 
 // injectTapEventPlugin()
 const logger = createLogger({
@@ -70,5 +70,6 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-
-module.hot.accept()
+if (module.hot) {
+  module.hot.accept()
+}
