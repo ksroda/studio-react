@@ -18,6 +18,7 @@ import QuestionsList from '~/views/QuestionsList/QuestionsList'
 import QuestionsAll from '~/views/QuestionsList/QuestionsAll/QuestionsAll'
 import QuestionsCreate from '~/views/QuestionCreate/QuestionCreate'
 import UsersList from '~/views/Administration/Users/UsersList/UsersList'
+import UserCreate from '~/views/Administration/Users/UserCreate/UserCreate'
 
 import { granacik } from '~/shared/colors'
 import reducer from '~/reducers'
@@ -60,6 +61,7 @@ ReactDOM.render(
             <Route path="questions/edit/:id" component={QuestionsCreate} />
 
             <Route path="administration/users" component={UsersList} />
+            <Route path="administration/users/create" component={UserCreate} />
           </Route>
 
           <Redirect from="*" to="home/questions/all" />

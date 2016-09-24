@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import cx from 'classnames'
 
 import SnackbarMUI from 'material-ui/Snackbar'
 import SuccessIcon from 'material-ui/svg-icons/navigation/check'
@@ -28,6 +27,10 @@ function SnackbarIcon ({ type }) {
     default:
       return null
   }
+}
+
+SnackbarIcon.propTypes = {
+  type: PropTypes.string
 }
 
 class Snackbar extends Component {
@@ -64,6 +67,8 @@ class Snackbar extends Component {
 }
 
 Snackbar.propTypes = {
+  message: PropTypes.string,
+  type: PropTypes.string,
   dispatch: PropTypes.func,
   blockedReasons: PropTypes.array
 }

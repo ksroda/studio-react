@@ -67,6 +67,6 @@ QuestionCreateForm.propTypes = {
 }
 
 export default reduxForm({
-  form: 'contact',
+  form: 'question',
   validate
 })(QuestionCreateForm)
