@@ -1,8 +1,9 @@
 import React, { PropTypes, Component } from 'react'
 
-import API from './api'
-
 import injectTapEventPlugin from 'react-tap-event-plugin'
+
+import Snackbar from './components/Snackbar/Snackbar'
+import API from './api'
 
 class Auth extends Component {
   constructor () {
@@ -47,10 +48,19 @@ class Auth extends Component {
   render () {
     const { allowedToSeeContent } = this.state
     const { children } = this.props
-    return React.cloneElement(children, {
-      allowedToSeeContent,
-      setAllowedToSeeContent: this.setAllowedToSeeContent
-    })
+    return (
+      <div>
+        {
+          React.cloneElement(children, {
+            allowedToSeeContent,
+            setAllowedToSeeContent: this.setAllowedToSeeContent
+          })
+        }
+        <Snackbar />
+      </div>
+    )
+
+
   }
 }
 

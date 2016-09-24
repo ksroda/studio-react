@@ -1,0 +1,30 @@
+@import '../../shared/colors';
+
+.snackbar {
+  & > div {
+    background-color: #323232 !important;
+  }
+}
+
+.successIcon {
+  color: lime !important;
+  height: 35px !important;
+  width: 35px !important;
+}
+
+.errorIcon {
+  color: #FF0100 !important;
+  height: 35px !important;
+  width: 35px !important;
+}
+
+.loadingIcon {
+  position: relative !important;
+  right: 10px !important;
+}
+
+.icon {
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
