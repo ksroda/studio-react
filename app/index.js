@@ -23,7 +23,6 @@ import UserCreate from '~/views/Administration/Users/UserCreate/UserCreate'
 import { granacik } from '~/shared/colors'
 import reducer from '~/reducers'
 
-// injectTapEventPlugin()
 const logger = createLogger({
   collapsed: true,
   duration: true
