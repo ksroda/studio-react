@@ -13,6 +13,7 @@ function About ({ counter, dispatch }) {
     <div className={style.about}>
       <h2>About {counter}</h2>
       <h1>Home</h1>
+
       <FlatButton label="INC" onClick={() => dispatch(increaseCounter())} />
       <FlatButton label="DEC" onClick={() => dispatch(decreaseCounter())} />
       <FlatButton label="ASYNC INC" onClick={() => dispatch(asyncDoubleIncrease())} />

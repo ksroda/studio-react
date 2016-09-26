@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 import CircularProgress from 'material-ui/CircularProgress'
 
-import HeaderButtons from '../../../components/HeaderButtons/HeaderButtons'
-import Table from '../../../components/Table/Table'
-import { getAllQuestions } from '../actions'
+import HeaderButtons from '../../../../components/HeaderButtons/HeaderButtons'
+import Table from '../../../../components/Table/Table'
+import { getAllQuestions } from '../../actions'
 
 import style from '../QuestionsList.scss'
 

@@ -5,7 +5,6 @@ import API from '../../api'
 export const SET_ALL_QUESTIONS = 'SET_ALL_QUESTIONS'
 export const SET_FETCHING_ALL = 'SET_FETCHING_ALL'
 
-
 // ------------------------------ALL-------------------------------------
 
 export function setFetchingAll (isFetching) {

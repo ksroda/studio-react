@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 
 import QuestionCreateForm from './QuestionCreateForm/QuestionCreateForm'
-import API from '../../api'
+import API from '../../../api'
 
 import style from './QuestionCreate.scss'
 
@@ -39,18 +39,19 @@ class QuestionCreate extends Component {
         {
           isFetching && !!id
             ?
-            <CircularProgress className={style.loading} />
+              <CircularProgress className={style.loading} />
             :
-            <QuestionCreateForm
-              initialValues={!id ? {} : {
-                content: question.content,
-                answer0: question.answers[0].content,
-                answer1: question.answers[1].content,
-                answer2: question.answers[2].content,
-                answer3: question.answers[3].content
-              }}
-              editMode={!!question.id}
-            />
+              <QuestionCreateForm
+                initialValues={!id ? {} : {
+                  ...question,
+                  to: new Date(question.to),
+                  answerA: question.answers[0].content,
+                  answerB: question.answers[1].content,
+                  answerC: question.answers[2].content,
+                  answerD: question.answers[3].content
+                }}
+                editMode={!!question.id}
+              />
         }
       </div>
     )

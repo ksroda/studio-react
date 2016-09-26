@@ -12,7 +12,7 @@ class Auth extends Component {
     this.setAllowedToSeeContent = this.setAllowedToSeeContent.bind(this)
 
     this.state = {
-      allowedToSeeContent: true
+      allowedToSeeContent: false
     }
   }
 
@@ -24,7 +24,7 @@ class Auth extends Component {
     const { location: { pathname: path } } = this.props
     const { router } = this.context
 
-    // router.push('/login')
+    router.push('/login')
     API.user.me()
       .then(response => {
         this.setState({
@@ -59,8 +59,6 @@ class Auth extends Component {
         <Snackbar />
       </div>
     )
-
-
   }
 }
 

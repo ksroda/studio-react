@@ -34,8 +34,8 @@ const api = {
     getQuestion: data => getPromise(`${baseURL}/api/questions/${data.id}`),
     getAllQuestions: data => getPromise(`${baseURL}/api/questions`, data), // mock
     getMyQuestions: data => getPromise(`${baseURL}/myquestions`, data),
-    post: data => getPromise('./test.json', data, 'post'),
-    put: data => getPromise(`${baseURL}/questions`, data, 'put'),
+    create: data => getPromise('./test.json', data, 'post'),
+    edit: (id, data) => getPromise(`${baseURL}/api/questions/${id}`, data, 'put'),
     getCount: () => getPromise(`${baseURL}/api/questions/page/count`)
   },
   subjects: {

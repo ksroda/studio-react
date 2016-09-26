@@ -1,0 +1,15 @@
+.formRow {
+  display: flex;
+
+  & > div:first-of-type {
+    flex: 1;
+  }
+
+  & > div {
+    margin-right: 50px;
+
+    &:last-of-type {
+      margin-right: 0px;
+    }
+  }
+}

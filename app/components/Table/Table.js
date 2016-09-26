@@ -26,7 +26,7 @@ function Table ({ tableClassname, labels, items, handleEdit }) {
                 labels.map((label, l) => (
                   <td key={`label-${l}`}>
                     {
-                      label.prop.split(',').map(item => item[item]).join(' ')
+                      label.prop.split(',').map(l => item[l]).join(' ')
                     }
                   </td>
                 ))

@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
+import recycleState from 'redux-recycle'
 
-import { all } from './views/QuestionsList/reducers'
-import { INC_COUNTER, DEC_COUNTER, OPEN_SNACKBAR, CLOSE_SNACKBAR } from './actions'
+import { all } from './views/Questions/reducers'
+import { INC_COUNTER, DEC_COUNTER, OPEN_SNACKBAR, CLOSE_SNACKBAR, LOGOUT, LOGGING_IN } from './actions'
 
 const initialState = {
   counter: 0,
   snackbar: {
     open: false
-  }
+  },
+  loggingIn: false
 }
 
 function app (state = initialState, action) {
@@ -39,17 +41,22 @@ function app (state = initialState, action) {
           open: false
         }
       }
+    case LOGGING_IN:
+      return {
+        ...state,
+        loggingIn: action.payload.loggingIn
+      }
     default:
       return state
   }
 }
 
 const reducers = {
-  app,
+  app: recycleState(app, [LOGOUT]),
   questions: combineReducers({
-    all
+    all: recycleState(all, [LOGOUT])
   }),
-  form: formReducer
+  form: recycleState(formReducer, [LOGOUT])
 }
 
 export default combineReducers(reducers)

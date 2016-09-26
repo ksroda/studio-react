@@ -12,7 +12,6 @@ function QuestionsList ({ children }) {
 }
 
 QuestionsList.propTypes = {
-  dispatch: PropTypes.func,
   children: PropTypes.node
 }
 

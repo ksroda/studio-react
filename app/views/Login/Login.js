@@ -11,10 +11,16 @@ class Login extends Component {
   render () {
     return (
       <Paper className={style.login}>
-        <LoginForm />
+        <LoginForm {...this.props} />
       </Paper>
     )
   }
 }
 
-export default connect()(Login)
+function select (state) {
+  return {
+    loggingIn: state.app.loggingIn
+  }
+}
+
+export default connect(select)(Login)
