@@ -29,6 +29,7 @@ class QuestionsAll extends Component {
     router.push('/home/administration/users/create')
   }
 
+
   handleEdit (id) {
     const { router } = this.context
     router.push(`/home/administration/users/edit/${id}`)
