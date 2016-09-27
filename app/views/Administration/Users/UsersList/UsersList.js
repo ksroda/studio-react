@@ -5,7 +5,6 @@ import CircularProgress from 'material-ui/CircularProgress'
 
 import HeaderButtons from '../../../../components/HeaderButtons/HeaderButtons'
 import Table from '../../../../components/Table/Table'
-// import { getAllQuestions } from '../actions'
 
 import style from './UsersList.scss'
 
@@ -21,7 +20,7 @@ class QuestionsAll extends Component {
     const { dispatch, questions } = this.props
 
     if (questions.length === 0) {
-      // dispatch(getAllQuestions())
+      dispatch(getUsers())
     }
   }
 

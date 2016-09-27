@@ -1,4 +1,4 @@
-import { SET_ALL_QUESTIONS, SET_FETCHING_ALL } from './actions'
+import { SET_ALL_QUESTIONS, SET_FETCHING_ALL, SET_SUBJECTS } from './actions'
 
 const allInitialState = {
   isFetching: false,
@@ -16,6 +16,22 @@ export function all (state = allInitialState, action) {
       return {
         ...state,
         isFetching: action.payload.isFetching
+      }
+    default:
+      return state
+  }
+}
+
+const subjectsInitialState = {
+  data: []
+}
+
+export function subjects (state = subjectsInitialState, action) {
+  switch (action.type) {
+    case SET_SUBJECTS:
+      return {
+        ...state,
+        data: action.payload.subjects
       }
     default:
       return state

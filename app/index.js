@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
+import Promise from 'bluebird'
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -28,7 +29,20 @@ const logger = createLogger({
   duration: true
 })
 
-const store = createStore(reducer, applyMiddleware(thunk, logger))
+const snackbarMiddleware = store => dispatch => (action) => {
+  if (action.type === 'OPEN_SNACKBAR') {
+    const state = store.getState()
+    if (state.app.snackbar.open) {
+      Promise.delay(1000).then(() => dispatch(action))
+    } else {
+      return dispatch(action)
+    }
+  } else {
+    return dispatch(action)
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk, snackbarMiddleware, logger))
 
 const theme = getMuiTheme({
   ...lightBaseTheme,

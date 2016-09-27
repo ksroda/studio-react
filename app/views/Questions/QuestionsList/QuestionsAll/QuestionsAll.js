@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 import CircularProgress from 'material-ui/CircularProgress'
 
@@ -41,7 +42,7 @@ class QuestionsAll extends Component {
       { text: 'Treść pytania', prop: 'content' },
       { text: 'Przedmiot', prop: 'subject' },
       { text: 'Autor', prop: 'creatorFirstName,creatorLastName' },
-      { text: 'Od?', prop: 'from' }
+      { text: 'Od?', prop: 'from', transform: item => moment(new Date(item)).lang('pl').format('LLL') }
     ]
     return (
       <div>

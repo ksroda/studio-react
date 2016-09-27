@@ -10,6 +10,18 @@ export const OPEN_SNACKBAR = 'OPEN_SNACKBAR'
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR'
 export const LOGOUT = 'LOGOUT'
 export const LOGGING_IN = 'LOGGING_IN'
+export const SET_PROFILE = 'SET_PROFILE'
+
+// --------------------------------Profile--------------------------------------
+
+export function setProfile (profile) {
+  return {
+    type: SET_PROFILE,
+    payload: {
+      profile
+    }
+  }
+}
 
 // --------------------------------Snackbar-------------------------------------
 
@@ -50,7 +62,7 @@ export function login ({ username, password, setAllowedToSeeContent }) {
         dispatch(setLoggingIn(false))
       })
       .catch((error) => {
-        dispatch(openSnackbar({ message: 'Nieprawidłowe dane logowania', type: snackbarTypes.ERROR }))
+        dispatch(openSnackbar({ message: 'Nieprawidłowe dane logowania #dalibomba', type: snackbarTypes.ERROR }))
         dispatch(setLoggingIn(false))
       })
   }

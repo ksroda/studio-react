@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 
 import CircularProgress from 'material-ui/CircularProgress'
-
 import QuestionCreateForm from './QuestionCreateForm/QuestionCreateForm'
+
+import { getSubjects } from '../actions'
 import API from '../../../api'
 
 import style from './QuestionCreate.scss'
@@ -19,7 +21,7 @@ class QuestionCreate extends Component {
   }
 
   componentWillMount () {
-    const { params: { id } } = this.props
+    const { params: { id }, dispatch, subjects } = this.props
     if (id) {
       API.questions.getQuestion({ id })
         .then((response) => {
@@ -29,11 +31,14 @@ class QuestionCreate extends Component {
           })
         })
     }
+    if (!subjects.length) {
+      dispatch(getSubjects())
+    }
   }
 
   render () {
     const { question, isFetching } = this.state
-    const { params: { id } } = this.props
+    const { params: { id }, subjects, profile, dispatch } = this.props
     return (
       <div className={style.container}>
         {
@@ -42,14 +47,24 @@ class QuestionCreate extends Component {
               <CircularProgress className={style.loading} />
             :
               <QuestionCreateForm
-                initialValues={!id ? {} : {
-                  ...question,
-                  to: new Date(question.to),
-                  answerA: question.answers[0].content,
-                  answerB: question.answers[1].content,
-                  answerC: question.answers[2].content,
-                  answerD: question.answers[3].content
-                }}
+                dispatch={dispatch}
+                subjects={subjects}
+                initialValues={!id
+                  ?
+                    {
+                      author: profile.fullName
+                    }
+                  :
+                    {
+                      ...question,
+                      author: `${question.creatorFirstName} ${question.creatorLastName}`,
+                      to: new Date(question.to),
+                      answerA: question.answers[0].content,
+                      answerB: question.answers[1].content,
+                      answerC: question.answers[2].content,
+                      answerD: question.answers[3].content
+                    }
+                }
                 editMode={!!question.id}
               />
         }
@@ -62,4 +77,11 @@ QuestionCreate.propTypes = {
   params: PropTypes.object
 }
 
-export default QuestionCreate
+function select (state) {
+  return {
+    subjects: state.questions.subjects.data,
+    profile: state.app.profile
+  }
+}
+
+export default connect(select)(QuestionCreate)

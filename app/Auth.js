@@ -1,8 +1,11 @@
 import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import Snackbar from './components/Snackbar/Snackbar'
+
+import { setProfile } from './actions'
 import API from './api'
 
 class Auth extends Component {
@@ -21,12 +24,12 @@ class Auth extends Component {
   }
 
   componentDidMount () {
-    const { location: { pathname: path } } = this.props
+    const { location: { pathname: path }, dispatch } = this.props
     const { router } = this.context
 
-    router.push('/login')
     API.user.me()
       .then(response => {
+        dispatch(setProfile(response.data))
         this.setState({
           allowedToSeeContent: true
         })
@@ -34,8 +37,8 @@ class Auth extends Component {
           router.push('/home')
         }
       })
-      .catch(error => {
-        // router.push('/login')
+      .catch(() => {
+        router.push('/login')
       })
   }
 
@@ -71,4 +74,4 @@ Auth.contextTypes = {
   router: PropTypes.object
 }
 
-export default Auth
+export default connect()(Auth)
